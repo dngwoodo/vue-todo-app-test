@@ -35,4 +35,16 @@ describe("App", () => {
     // '추가하기'라는 버튼이 화면에 출력됩니다.
     expect(wrapper.find("button").text()).toMatch("추가하기");
   });
+
+  it("listens input event", () => {
+    const wrapper = shallowMount(App);
+
+    // setValue는 아래 2개 코드의 축약 api 입니다.
+    wrapper.find("input").setValue("아무것도 안하기");
+
+    // wrapper.find("input").element.value = "아무것도 안하기";
+    // wrapper.find("input").trigger("input");
+
+    expect(wrapper.vm.text).toMatch("아무것도 안하기");
+  });
 });

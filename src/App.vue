@@ -8,9 +8,26 @@
           id="todo-control"
           type="text"
           placeholder="할 일을 작성해주세요"
+          :value="text"
+          @input="handleChange"
         />
         <button type="button">추가하기</button>
       </div>
     </form>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      text: "",
+    };
+  },
+  methods: {
+    handleChange(event) {
+      this.text = event.target.value;
+    },
+  },
+};
+</script>
