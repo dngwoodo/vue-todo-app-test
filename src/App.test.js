@@ -36,15 +36,24 @@ describe("App", () => {
     expect(wrapper.find("button").text()).toMatch("추가하기");
   });
 
-  it("listens input event", () => {
+  it("changes input value when listens input event", async () => {
     const wrapper = shallowMount(App);
 
     // setValue는 아래 2개 코드의 축약 api 입니다.
-    wrapper.find("input").setValue("아무것도 안하기");
+    await wrapper.find("input").setValue("아무것도 안하기");
 
     // wrapper.find("input").element.value = "아무것도 안하기";
     // wrapper.find("input").trigger("input");
 
     expect(wrapper.vm.text).toMatch("아무것도 안하기");
+  });
+
+  it("adds todo when listens '추가하기' click event", async () => {
+    const wrapper = shallowMount(App);
+
+    wrapper.find("input").setValue("아무것도 안하기");
+    await wrapper.find("button").trigger("click");
+
+    expect(wrapper.find("li").text()).toContain("아무것도 안하기");
   });
 });
