@@ -1,12 +1,13 @@
 import { shallowMount } from "@vue/test-utils";
+import { render } from "@testing-library/vue";
 
 import App from "./App.vue";
 
 describe("App", () => {
   it("renders title", () => {
-    const wrapper = shallowMount(App);
+    const { getByRole } = render(App);
 
-    expect(wrapper.find("h1").text()).toMatch("Todo App");
+    expect(getByRole("heading", { name: "Todo App" })).toBeInTheDocument();
   });
 
   it("renders label, input", () => {
